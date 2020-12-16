@@ -1,0 +1,70 @@
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+<b>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
+</b>
+<body>
+<div class="container"> </div>
+</body>
+<style>
+li a {
+    color: purple;
+
+.container{
+position:absolute;
+    width:60%;
+    height:60%;
+    background-color:white;
+    top:2%;
+    margin:0;
+    padding:0;
+    overflow:scroll;
+    margin-right:2vw;
+    box-shadow:2px 4px 5px 2px;
+    border-radius: 10px;
+    border-bottom-left-radius: 80%;
+    float:left;
+   -webkit-box-sizing: border-box
+   .sidenav {padding-top: 15px;}
+    font-size:20px;;
+   animation:lights 2s infinite ;
+
+}
+
+}
+
+body {
+    background: dark-blue  url("images/background.png") no-repeat;
+    height:60%;
+    width:60%;
+ <!--   background-color:brown;-->
+    margin-left:2vw;
+    font-family: Arial, Helvetica,serif;
+    box-shadow:2px 5px 0px 5px;
+    background-image:linear-gradient(darkblue,purple,white,darkviolet,brown);
+    border-radius: 20px;
+    border-bottom-left-radius: 70%;
+   -webkit-box-sizing: border-box;
+   animation:lights 2s infinite ;
+   float:left;
+   font-size:20px;
+   transition: 0.3s;
+   z-index:2;
+   text-align:center;
+   
+}
+</style>
